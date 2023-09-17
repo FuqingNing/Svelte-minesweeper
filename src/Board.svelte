@@ -9,9 +9,13 @@
     let styleVars = { width, height }
     let status = 'running'
     let cells = newBoard(width, height, bombsCount)
+    let showModal = false;
+
     
     $: styleVars = { ...styleVars, color: getBoardColor(status) }
     $: status = checkStatus(cells)
+    $: if (status === 'win') showModal = true;
+
 
     function getBoardColor(status) {
         if (status === 'lost') return 'red'
@@ -58,6 +62,16 @@
     </button>
     <p>you can only restart the game after finishing a round</p>
 </div>
+{#if showModal}
+<div class="modal">
+    <div class="modal-content">
+        <h2>Congratulations!</h2>
+        <p>You have won the game!</p>
+        <button on:click={() => showModal = false}>Close</button>
+    </div>
+</div>
+{/if}
+
 
 <style>
     .board {
@@ -98,4 +112,39 @@
         cursor: not-allowed;
         box-shadow: none;
     }
+    .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #06799F;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #055a7a;
+}
+
 </style>
