@@ -967,7 +967,7 @@ var app = (function () {
     	return block;
     }
 
-    // (65:0) {#if showModal}
+    // (64:0) {#if showModal}
     function create_if_block$1(ctx) {
     	let div1;
     	let div0;
@@ -990,14 +990,14 @@ var app = (function () {
     			t3 = space();
     			button = element("button");
     			button.textContent = "Close";
-    			add_location(h2, file$1, 67, 8, 1861);
-    			add_location(p, file$1, 68, 8, 1895);
+    			add_location(h2, file$1, 66, 8, 1796);
+    			add_location(p, file$1, 67, 8, 1830);
     			attr_dev(button, "class", "svelte-i9fqkk");
-    			add_location(button, file$1, 69, 8, 1933);
+    			add_location(button, file$1, 68, 8, 1868);
     			attr_dev(div0, "class", "modal-content svelte-i9fqkk");
-    			add_location(div0, file$1, 66, 4, 1825);
+    			add_location(div0, file$1, 65, 4, 1760);
     			attr_dev(div1, "class", "modal svelte-i9fqkk");
-    			add_location(div1, file$1, 65, 0, 1801);
+    			add_location(div1, file$1, 64, 0, 1736);
     			dispose = listen_dev(button, "click", /*click_handler*/ ctx[12], false, false, false);
     		},
     		m: function mount(target, anchor) {
@@ -1020,7 +1020,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(65:0) {#if showModal}",
+    		source: "(64:0) {#if showModal}",
     		ctx
     	});
 
@@ -1038,8 +1038,6 @@ var app = (function () {
     	let t1;
     	let button_disabled_value;
     	let t2;
-    	let p;
-    	let t4;
     	let if_block_anchor;
     	let current;
     	let dispose;
@@ -1067,9 +1065,6 @@ var app = (function () {
     			button = element("button");
     			t1 = text("Restart");
     			t2 = space();
-    			p = element("p");
-    			p.textContent = "you can only restart the game after finishing a round";
-    			t4 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(div0, "class", "board svelte-i9fqkk");
@@ -1077,7 +1072,6 @@ var app = (function () {
     			button.disabled = button_disabled_value = /*status*/ ctx[1] === "running";
     			attr_dev(button, "class", "restart-button svelte-i9fqkk");
     			add_location(button, file$1, 55, 4, 1559);
-    			add_location(p, file$1, 62, 4, 1717);
     			set_style(div1, "text-align", "center");
     			add_location(div1, file$1, 54, 0, 1517);
 
@@ -1101,9 +1095,7 @@ var app = (function () {
     			insert_dev(target, div1, anchor);
     			append_dev(div1, button);
     			append_dev(button, t1);
-    			append_dev(div1, t2);
-    			append_dev(div1, p);
-    			insert_dev(target, t4, anchor);
+    			insert_dev(target, t2, anchor);
     			if (if_block) if_block.m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
     			current = true;
@@ -1157,7 +1149,7 @@ var app = (function () {
 
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div1);
-    			if (detaching) detach_dev(t4);
+    			if (detaching) detach_dev(t2);
     			if (if_block) if_block.d(detaching);
     			if (detaching) detach_dev(if_block_anchor);
     			run_all(dispose);
@@ -1324,19 +1316,24 @@ var app = (function () {
     	let main;
     	let h1;
     	let t1;
+    	let div;
+    	let h2;
+    	let t3;
     	let ul;
     	let li0;
     	let b0;
-    	let t3;
-    	let t4;
+    	let t5;
+    	let t6;
     	let li1;
     	let b1;
-    	let t6;
-    	let t7;
-    	let p0;
+    	let t8;
     	let t9;
-    	let p1;
+    	let p0;
     	let t11;
+    	let p1;
+    	let t13;
+    	let t14;
+    	let p2;
     	let current;
 
     	const board = new Board({
@@ -1349,34 +1346,50 @@ var app = (function () {
     			main = element("main");
     			h1 = element("h1");
     			h1.textContent = "Minesweeper";
-    			t1 = text("\n\tControls:\n\t");
+    			t1 = space();
+    			div = element("div");
+    			h2 = element("h2");
+    			h2.textContent = "Controls:";
+    			t3 = space();
     			ul = element("ul");
     			li0 = element("li");
     			b0 = element("b");
     			b0.textContent = "Left click";
-    			t3 = text(": uncover");
-    			t4 = space();
+    			t5 = text(": uncover");
+    			t6 = space();
     			li1 = element("li");
     			b1 = element("b");
     			b1.textContent = "Right click";
-    			t6 = text(": toggle flag");
-    			t7 = space();
+    			t8 = text(": toggle flag");
+    			t9 = space();
     			p0 = element("p");
     			p0.textContent = "Click on the board to start the game.";
-    			t9 = space();
-    			p1 = element("p");
-    			p1.textContent = "rules:you can flag or uncover a cell of the board once,and you can not click the cell after you flag it.";
     			t11 = space();
+    			p1 = element("p");
+    			p1.textContent = "Rules: You can flag or uncover a cell of the board once, and you cannot click the cell after you flag it.";
+    			t13 = space();
     			create_component(board.$$.fragment);
+    			t14 = space();
+    			p2 = element("p");
+    			p2.textContent = "You can only restart the game after finishing a round.";
+    			attr_dev(h1, "class", "svelte-1osl93f");
     			add_location(h1, file$2, 5, 1, 64);
-    			add_location(b0, file$2, 8, 6, 108);
-    			add_location(li0, file$2, 8, 2, 104);
-    			add_location(b1, file$2, 9, 6, 146);
-    			add_location(li1, file$2, 9, 2, 142);
-    			add_location(ul, file$2, 7, 1, 97);
-    			add_location(p0, file$2, 11, 1, 191);
-    			add_location(p1, file$2, 12, 1, 237);
-    			attr_dev(main, "class", "svelte-jre9pm");
+    			attr_dev(h2, "class", "svelte-1osl93f");
+    			add_location(h2, file$2, 7, 2, 111);
+    			add_location(b0, file$2, 9, 7, 144);
+    			add_location(li0, file$2, 9, 3, 140);
+    			add_location(b1, file$2, 10, 7, 183);
+    			add_location(li1, file$2, 10, 3, 179);
+    			add_location(ul, file$2, 8, 2, 132);
+    			attr_dev(div, "class", "controls svelte-1osl93f");
+    			add_location(div, file$2, 6, 1, 86);
+    			attr_dev(p0, "class", "svelte-1osl93f");
+    			add_location(p0, file$2, 13, 1, 237);
+    			attr_dev(p1, "class", "rules svelte-1osl93f");
+    			add_location(p1, file$2, 14, 1, 283);
+    			attr_dev(p2, "class", "restart-note svelte-1osl93f");
+    			add_location(p2, file$2, 16, 1, 447);
+    			attr_dev(main, "class", "svelte-1osl93f");
     			add_location(main, file$2, 4, 0, 56);
     		},
     		l: function claim(nodes) {
@@ -1386,20 +1399,25 @@ var app = (function () {
     			insert_dev(target, main, anchor);
     			append_dev(main, h1);
     			append_dev(main, t1);
-    			append_dev(main, ul);
+    			append_dev(main, div);
+    			append_dev(div, h2);
+    			append_dev(div, t3);
+    			append_dev(div, ul);
     			append_dev(ul, li0);
     			append_dev(li0, b0);
-    			append_dev(li0, t3);
-    			append_dev(ul, t4);
+    			append_dev(li0, t5);
+    			append_dev(ul, t6);
     			append_dev(ul, li1);
     			append_dev(li1, b1);
-    			append_dev(li1, t6);
-    			append_dev(main, t7);
-    			append_dev(main, p0);
+    			append_dev(li1, t8);
     			append_dev(main, t9);
-    			append_dev(main, p1);
+    			append_dev(main, p0);
     			append_dev(main, t11);
+    			append_dev(main, p1);
+    			append_dev(main, t13);
     			mount_component(board, main, null);
+    			append_dev(main, t14);
+    			append_dev(main, p2);
     			current = true;
     		},
     		p: noop,

@@ -60,7 +60,6 @@
     >
         Restart
     </button>
-    <p>you can only restart the game after finishing a round</p>
 </div>
 {#if showModal}
 <div class="modal">
