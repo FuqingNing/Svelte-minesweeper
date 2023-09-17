@@ -886,15 +886,15 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[11] = list[i];
+    	child_ctx[13] = list[i];
     	return child_ctx;
     }
 
-    // (43:4) {#each cells as cell (cell.id)}
+    // (47:4) {#each cells as cell (cell.id)}
     function create_each_block(key_1, ctx) {
     	let first;
     	let current;
-    	const cell_spread_levels = [/*cell*/ ctx[11]];
+    	const cell_spread_levels = [/*cell*/ ctx[13]];
     	let cell_props = {};
 
     	for (let i = 0; i < cell_spread_levels.length; i += 1) {
@@ -905,18 +905,18 @@ var app = (function () {
 
     	cell.$on("stepInto", function () {
     		if (is_function(/*status*/ ctx[1] === "running"
-    		? /*handleCellClick*/ ctx[4]
-    		: /*doNothing*/ ctx[6])) (/*status*/ ctx[1] === "running"
-    		? /*handleCellClick*/ ctx[4]
-    		: /*doNothing*/ ctx[6]).apply(this, arguments);
+    		? /*handleCellClick*/ ctx[5]
+    		: /*doNothing*/ ctx[7])) (/*status*/ ctx[1] === "running"
+    		? /*handleCellClick*/ ctx[5]
+    		: /*doNothing*/ ctx[7]).apply(this, arguments);
     	});
 
     	cell.$on("toggleFlag", function () {
     		if (is_function(/*status*/ ctx[1] === "running"
-    		? /*handleToggleFlag*/ ctx[5]
-    		: /*doNothing*/ ctx[6])) (/*status*/ ctx[1] === "running"
-    		? /*handleToggleFlag*/ ctx[5]
-    		: /*doNothing*/ ctx[6]).apply(this, arguments);
+    		? /*handleToggleFlag*/ ctx[6]
+    		: /*doNothing*/ ctx[7])) (/*status*/ ctx[1] === "running"
+    		? /*handleToggleFlag*/ ctx[6]
+    		: /*doNothing*/ ctx[7]).apply(this, arguments);
     	});
 
     	const block = {
@@ -936,7 +936,7 @@ var app = (function () {
     			ctx = new_ctx;
 
     			const cell_changes = (dirty & /*cells*/ 4)
-    			? get_spread_update(cell_spread_levels, [get_spread_object(/*cell*/ ctx[11])])
+    			? get_spread_update(cell_spread_levels, [get_spread_object(/*cell*/ ctx[13])])
     			: {};
 
     			cell.$set(cell_changes);
@@ -960,7 +960,67 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(43:4) {#each cells as cell (cell.id)}",
+    		source: "(47:4) {#each cells as cell (cell.id)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (65:0) {#if showModal}
+    function create_if_block$1(ctx) {
+    	let div1;
+    	let div0;
+    	let h2;
+    	let t1;
+    	let p;
+    	let t3;
+    	let button;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			h2 = element("h2");
+    			h2.textContent = "Congratulations!";
+    			t1 = space();
+    			p = element("p");
+    			p.textContent = "You have won the game!";
+    			t3 = space();
+    			button = element("button");
+    			button.textContent = "Close";
+    			add_location(h2, file$1, 67, 8, 1861);
+    			add_location(p, file$1, 68, 8, 1895);
+    			attr_dev(button, "class", "svelte-i9fqkk");
+    			add_location(button, file$1, 69, 8, 1933);
+    			attr_dev(div0, "class", "modal-content svelte-i9fqkk");
+    			add_location(div0, file$1, 66, 4, 1825);
+    			attr_dev(div1, "class", "modal svelte-i9fqkk");
+    			add_location(div1, file$1, 65, 0, 1801);
+    			dispose = listen_dev(button, "click", /*click_handler*/ ctx[12], false, false, false);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, h2);
+    			append_dev(div0, t1);
+    			append_dev(div0, p);
+    			append_dev(div0, t3);
+    			append_dev(div0, button);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(65:0) {#if showModal}",
     		ctx
     	});
 
@@ -979,16 +1039,20 @@ var app = (function () {
     	let button_disabled_value;
     	let t2;
     	let p;
+    	let t4;
+    	let if_block_anchor;
     	let current;
     	let dispose;
     	let each_value = /*cells*/ ctx[2];
-    	const get_key = ctx => /*cell*/ ctx[11].id;
+    	const get_key = ctx => /*cell*/ ctx[13].id;
 
     	for (let i = 0; i < each_value.length; i += 1) {
     		let child_ctx = get_each_context(ctx, each_value, i);
     		let key = get_key(child_ctx);
     		each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
     	}
+
+    	let if_block = /*showModal*/ ctx[3] && create_if_block$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -1005,19 +1069,22 @@ var app = (function () {
     			t2 = space();
     			p = element("p");
     			p.textContent = "you can only restart the game after finishing a round";
-    			attr_dev(div0, "class", "board svelte-1m7fg1n");
-    			add_location(div0, file$1, 37, 0, 1081);
+    			t4 = space();
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    			attr_dev(div0, "class", "board svelte-i9fqkk");
+    			add_location(div0, file$1, 41, 0, 1157);
     			button.disabled = button_disabled_value = /*status*/ ctx[1] === "running";
-    			attr_dev(button, "class", "restart-button svelte-1m7fg1n");
-    			add_location(button, file$1, 51, 4, 1483);
-    			add_location(p, file$1, 58, 4, 1641);
+    			attr_dev(button, "class", "restart-button svelte-i9fqkk");
+    			add_location(button, file$1, 55, 4, 1559);
+    			add_location(p, file$1, 62, 4, 1717);
     			set_style(div1, "text-align", "center");
-    			add_location(div1, file$1, 50, 0, 1441);
+    			add_location(div1, file$1, 54, 0, 1517);
 
     			dispose = [
     				action_destroyer(cssVars_action = cssVars.call(null, div0, /*styleVars*/ ctx[0])),
     				listen_dev(div0, "contextmenu", contextmenu_handler, false, false, false),
-    				listen_dev(button, "click", /*handleRestart*/ ctx[3], false, false, false)
+    				listen_dev(button, "click", /*handleRestart*/ ctx[4], false, false, false)
     			];
     		},
     		l: function claim(nodes) {
@@ -1036,6 +1103,9 @@ var app = (function () {
     			append_dev(button, t1);
     			append_dev(div1, t2);
     			append_dev(div1, p);
+    			insert_dev(target, t4, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -1047,6 +1117,19 @@ var app = (function () {
 
     			if (!current || dirty & /*status*/ 2 && button_disabled_value !== (button_disabled_value = /*status*/ ctx[1] === "running")) {
     				prop_dev(button, "disabled", button_disabled_value);
+    			}
+
+    			if (/*showModal*/ ctx[3]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$1(ctx);
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
     			}
     		},
     		i: function intro(local) {
@@ -1074,6 +1157,9 @@ var app = (function () {
 
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(t4);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
     			run_all(dispose);
     		}
     	};
@@ -1098,6 +1184,7 @@ var app = (function () {
     	let styleVars = { width, height };
     	let status = "running";
     	let cells = newBoard(width, height, bombsCount);
+    	let showModal = false;
 
     	function getBoardColor(status) {
     		if (status === "lost") return "red";
@@ -1128,10 +1215,12 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Board> was created with unknown prop '${key}'`);
     	});
 
+    	const click_handler = () => $$invalidate(3, showModal = false);
+
     	$$self.$set = $$props => {
-    		if ("width" in $$props) $$invalidate(7, width = $$props.width);
-    		if ("height" in $$props) $$invalidate(8, height = $$props.height);
-    		if ("bombsCount" in $$props) $$invalidate(9, bombsCount = $$props.bombsCount);
+    		if ("width" in $$props) $$invalidate(8, width = $$props.width);
+    		if ("height" in $$props) $$invalidate(9, height = $$props.height);
+    		if ("bombsCount" in $$props) $$invalidate(10, bombsCount = $$props.bombsCount);
     	};
 
     	$$self.$capture_state = () => {
@@ -1141,17 +1230,19 @@ var app = (function () {
     			bombsCount,
     			styleVars,
     			status,
-    			cells
+    			cells,
+    			showModal
     		};
     	};
 
     	$$self.$inject_state = $$props => {
-    		if ("width" in $$props) $$invalidate(7, width = $$props.width);
-    		if ("height" in $$props) $$invalidate(8, height = $$props.height);
-    		if ("bombsCount" in $$props) $$invalidate(9, bombsCount = $$props.bombsCount);
+    		if ("width" in $$props) $$invalidate(8, width = $$props.width);
+    		if ("height" in $$props) $$invalidate(9, height = $$props.height);
+    		if ("bombsCount" in $$props) $$invalidate(10, bombsCount = $$props.bombsCount);
     		if ("styleVars" in $$props) $$invalidate(0, styleVars = $$props.styleVars);
     		if ("status" in $$props) $$invalidate(1, status = $$props.status);
     		if ("cells" in $$props) $$invalidate(2, cells = $$props.cells);
+    		if ("showModal" in $$props) $$invalidate(3, showModal = $$props.showModal);
     	};
 
     	$$self.$$.update = () => {
@@ -1165,26 +1256,33 @@ var app = (function () {
     				color: getBoardColor(status)
     			});
     		}
+
+    		if ($$self.$$.dirty & /*status*/ 2) {
+    			 if (status === "win") $$invalidate(3, showModal = true);
+    		}
     	};
 
     	return [
     		styleVars,
     		status,
     		cells,
+    		showModal,
     		handleRestart,
     		handleCellClick,
     		handleToggleFlag,
     		doNothing,
     		width,
     		height,
-    		bombsCount
+    		bombsCount,
+    		getBoardColor,
+    		click_handler
     	];
     }
 
     class Board extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { width: 7, height: 8, bombsCount: 9 });
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { width: 8, height: 9, bombsCount: 10 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
